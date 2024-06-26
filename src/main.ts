@@ -1,0 +1,324 @@
+import './style.css'
+import './utils.css'
+import './modern-normalize.css'
+import typescriptLogo from './typescript.svg'
+import viteLogo from '/vite.svg'
+import { setupCounter } from './counter.ts'
+
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=sentient@500,600,400,700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="My Portfolio website" />
+    <meta name="keywords" content="web design, html, css, js" />
+    <title>Portfolio Website</title>
+  </head>
+  <body>
+    <header class="header container">
+      <nav>
+        <ul class="header__menu">
+          <li>
+            <a class="header__link" href="#about">About</a>
+          </li>
+          <li>
+            <a class="header__link" href="#featured">Work</a>
+          </li>
+          <li>
+            <a class="header__link" href="#contact">Contact</a>
+          </li>
+          <li class="header__line"></li>
+          <li>
+            <button
+              aria-label="theme-toggle btn"
+              id="theme-toggle"
+              class="header__sun"
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+              <path d="M12 .75a8.25 8.25 0 0 0-4.135 15.39c.686.398 1.115 1.008 1.134 1.623a.75.75 0 0 0 .577.706c.352.083.71.148 1.074.195.323.041.6-.218.6-.544v-4.661a6.714 6.714 0 0 1-.937-.171.75.75 0 1 1 .374-1.453 5.261 5.261 0 0 0 2.626 0 .75.75 0 1 1 .374 1.452 6.712 6.712 0 0 1-.937.172v4.66c0 .327.277.586.6.545.364-.047.722-.112 1.074-.195a.75.75 0 0 0 .577-.706c.02-.615.448-1.225 1.134-1.623A8.25 8.25 0 0 0 12 .75Z" />
+              <path fill-rule="evenodd" d="M9.013 19.9a.75.75 0 0 1 .877-.597 11.319 11.319 0 0 0 4.22 0 .75.75 0 1 1 .28 1.473 12.819 12.819 0 0 1-4.78 0 .75.75 0 0 1-.597-.876ZM9.754 22.344a.75.75 0 0 1 .824-.668 13.682 13.682 0 0 0 2.844 0 .75.75 0 1 1 .156 1.492 15.156 15.156 0 0 1-3.156 0 .75.75 0 0 1-.668-.824Z" clip-rule="evenodd" />
+            </svg>
+            
+                <path
+                  d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
+                />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <a class="header__resume btn" href="/Resume.pdf" download="Resume.pdf">Resume</a>
+          </li>
+        </ul>
+        <button aria-label="mobile nav button" class="header__bars">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </nav>
+    </header>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <nav>
+        <ul class="mobile-nav__menu">
+          <li>
+            <a class="mobile-nav__link" href="#about">About</a>
+          </li>
+          <li>
+            <a class="mobile-nav__link" href="#featured">Work</a>
+          </li>
+          <li>
+            <a class="mobile-nav__link" href="#contact">Contact</a>
+          </li>
+          <li class="mobile-nav__link-line"></li>
+          <li>
+            <button
+              aria-label="theme-toggle btn"
+              id="theme-toggle"
+              class="mobile-nav__sun"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+                />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <a class="mobile-nav__btn btn" href="/Resume.pdf" download="Resume.pdf">Resume</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <!-- End of Mobile Navigation -->
+    <main>
+      <section class="hero container">
+        <img class="hero__img" src="/me.jpg" alt="Profile picture" />
+        <h2 class="hero__subtitle">Hi, I'm Danish! </h2>
+        <h1 class="hero__title">
+          FRONT-END <br />
+          WEB DEVELOPER.
+        </h1>
+        <p class="hero__description">
+          A passionate <strong>Frontend / Fullstack</strong> web
+          developer and <strong>UI/UX</strong>
+          enthusiast specialized in building stunning pixel-perfect interactive
+          websites/applications.
+        </p>
+        <a class="hero__btn btn" href="#contact">Reach out</a>
+      </section>
+      <section id="about" class="about container section">
+        <div class="about__content">
+          <h2 class="about__title">About Me</h2>
+          <p class="about__description">
+            Hello there! I'm Danish, a
+            <strong>Frontend / Fullstack</strong> web developer based
+            on Kuala Lumpur. I wake up in the morning,  make myself a cup of
+            coffee, open up my desktop and build things that live on the web all
+            day, everyday.
+          </p>
+          <p class="about__description">
+            I always thrive to learn new things everyday to improve my knowledge and skills.
+          </p>
+
+
+          <hr class="about__hr" />
+          <h3 class="about__subtitle">Skills</h3>
+          <div class="about__ul-container">
+            <ul class="about__ul">
+              <li class="about__list">JavaScript (ES6+)</li>
+              <li class="about__list">CSS</li>
+              <li class="about__list">HTML</li>
+              <li class="about__list">Php</li>
+            </ul>
+            <ul class="about__ul">
+              <li class="about__list">ReactJS</li>
+              <li class="about__list">Java</li>
+              <li class="about__list">C++</li>
+              <li class="about__list">MySQL</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about__img-wrapper">
+          <img
+            class="about__img lazy loading"
+            src="https://via.placeholder.com/720"
+            data-src="/me1.jpg"
+            alt="Profile picture"
+          />
+        </div>
+      </section>
+      <section id="featured" class="featured container section">
+        <h3 class="featured__subtitle">Featured project</h3>
+        <div class="featured__wrapper">
+          <h2 class="featured__title">Caselytical</h2>
+          <a
+            aria-label="link featured projects"
+            class="featured__link"
+            href="https://caselytical.vercel.app"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+              />
+            </svg>
+          </a>
+        </div>
+        <p class="featured__description">
+          A website i made inspired by the brand Casetify.
+        </p>
+        <div class="featured__info-container">
+          <div>
+            <h3 class="featured__label">Tech stack</h3>
+            <ul class="featured__tech-stack">
+              <li class="featured__info">Php</li>
+              <li class="featured__info">Bootstrap</li>
+              <li class="featured__info">HTML</li>
+              <li class="featured__info">CSS</li>
+              <li class="featured__info">SQL</li>
+              <li class="featured__info">JavaScript</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="featured__label">Project type</h3>
+            <p class="featured__info">Fullstack</p>
+          </div>
+          <div>
+            <h3 class="featured__label">Timeline</h3>
+            <p class="featured__info">September 2022  - present</p>
+          </div>
+        </div>
+        <div class="featured__img-container">
+          <div class="featured__img-wrapper">
+            <img
+            class="lazy loading"
+              src="https://via.placeholder.com/1920x968"
+              data-src="/1.png"
+              alt="Slaying The Dragon hero"
+            />
+          </div>
+            <div class="featured__img-wrapper">
+              <img
+              class="lazy loading"
+              src="https://via.placeholder.com/1920x968"
+              data-src="/2.png"
+              alt="Slaying The Dragon courses"
+              />
+            </div>
+            <div class="featured__img-wrapper">
+              <img
+              class="lazy loading"
+              src="https://via.placeholder.com/1920x968"
+              data-src="/3.png"
+              alt="Slaying The Dragon pricing"
+              />
+            </div>
+            <div class="featured__img-wrapper">
+              <img
+              class="lazy loading"
+              src="https://via.placeholder.com/1920x968"
+              data-src="/4.png"
+              alt="Slaying The Dragon features"
+              />
+          </div>
+        </div>
+      </section>
+      <section class="work container section">
+        <h2 class="work__title">Projects</h2>
+        <p class="work__description">
+          Here are some of my projects.
+        </p>
+        <div class="work__container">
+          <!-- Project 1 -->
+          <h3 class="work__project-title">User Authentication System</h3>
+          <div class="work__img-wrapper work__image1">
+            <img
+              class="lazy loading"
+              src="https://via.placeholder.com/900"
+              data-src=""
+              alt=""
+            />
+          </div>
+          <div class="work__project work__content1">
+            <h3 class="work__project-subtitle">User Authentication System</h3>
+            <p class="work__project-description1">
+              Created a signup/login system for users on a website.
+            </p>
+            <p class="work__project-description2">
+              This project requires my knowledge of Bootstrap, Database, NodeJS and Php.
+            </p>
+            <a class="btn work__project-btn" href="#">Website</a>
+          </div>
+          <!-- Project 2 -->
+          <h3 class="work__project-title">Draze Force</h3>
+          <div class="work__img-wrapper work__image2">
+            <img
+              class="lazy loading"
+              src="https://via.placeholder.com/900"
+              data-src=""
+              alt=""
+            />
+          </div>
+          <div class="work__project work__content2">
+            <h3 class="work__project-subtitle">Ruang Membaca</h3>
+            <p class="work__project-description1">
+              An application wheres the user can create an account, CRUD operations and show if a book is available.
+            </p>
+            <p class="work__project-description2">
+              This app requires my knowledge in Postman, EJS and a simple frontend.
+            </p>
+            <a class="btn work__project-btn" href="#">Website</a>
+          </div>
+
+        </div>
+      </section>
+      <section id="contact" class="contact container section">
+        <h2 class="contact__title">Get In Contact With Me :)</h2>
+        <p class="contact__description">
+          Whether you are starting a project, have business inquiries or just
+          want to say hi, my inbox is always open so feel free to reach out and
+          I will get back to you as soon as possible.
+        </p>
+        <a
+          class="contact__btn btn"
+          href="mailto:akmardanishhakim@gmail.com"
+          target="_blank"
+          >Reach Out</a
+        >
+      </section>
+    </main>
+    <footer class="footer container section">
+      <h3 class="footer__title">~ Danish Hakim ~</h3>
+    </footer>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
+
+`
+
+setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)

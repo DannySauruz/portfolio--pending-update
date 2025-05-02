@@ -55,7 +55,7 @@
   }
 
   .hero__title {
-    font-size: var(--size-5xl);
+    font-size: var(--size-2xl);
   }
 
   .hero__description {

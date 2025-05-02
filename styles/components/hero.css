@@ -30,7 +30,7 @@
 
 .hero__description {
   max-width: 60ch;
-  font-size: var(--size-sm);
+  font-size: var(--size-xxs);
   color: var(--clr-slate600);
 }
 

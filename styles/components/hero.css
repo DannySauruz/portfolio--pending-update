@@ -25,7 +25,7 @@
   text-transform: uppercase;
   font-size: var(--size-base);
   letter-spacing: -0.05em;
-  line-height: 0.9;
+  line-height: 1.1;
 }
 
 .hero__description {

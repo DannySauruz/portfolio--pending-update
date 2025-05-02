@@ -85,7 +85,7 @@
   }
 
   .hero__title {
-    font-size: var(--size-7xl);
+    font-size: var(--size-2xl);
   }
 
   .hero__description {
@@ -113,7 +113,7 @@
   }
 
   .hero__title {
-    font-size: var(--size-9xl);
+    font-size: var(--size-2xl);
   }
 
   .hero__description {

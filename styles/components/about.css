@@ -37,7 +37,7 @@
 .about__ul {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.25em;
   list-style-type: '\1F31F'; 
   padding-left: 1em;
   flex: 1;

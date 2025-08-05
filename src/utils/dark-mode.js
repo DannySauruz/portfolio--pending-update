@@ -1,5 +1,6 @@
 const darkMode = () => {
-  const themeToggleBtns = document.querySelectorAll('#theme-toggle');
+  const themeToggleBtn = document.querySelector('#theme-toggle');
+  const mobileThemeToggleBtn = document.querySelector('#mobile-theme-toggle');
 
   // State
   const theme = localStorage.getItem('theme');
@@ -19,9 +20,8 @@ const darkMode = () => {
   };
 
   // Events
-  themeToggleBtns.forEach(btn =>
-    btn.addEventListener('click', handleThemeToggle)
-  );
+  themeToggleBtn?.addEventListener('click', handleThemeToggle);
+  mobileThemeToggleBtn?.addEventListener('click', handleThemeToggle);
 };
 
 export default darkMode;

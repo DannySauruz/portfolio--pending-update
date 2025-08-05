@@ -16,6 +16,23 @@ import lazyLoading from './utils/lazy-loading';
 import performance from './utils/performance';
 import analytics from './utils/analytics';
 
+// Prevent automatic scrolling on page reload
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
+// Ensure page starts at top
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+// Force scroll to top on page load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0);
+});
+
 mobileNav();
 darkMode();
 lazyLoading();

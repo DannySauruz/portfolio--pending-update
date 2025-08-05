@@ -42,6 +42,18 @@
   color: var(--clr-light);
 }
 
+.btn--secondary:focus,
+.btn--secondary:focus-visible {
+  outline: none;
+  border: 2px solid var(--clr-indigo);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.btn--secondary:visited {
+  color: var(--clr-indigo);
+  border-color: var(--clr-indigo);
+}
+
 /* xs */
 @media (min-width: 475px) {
   .contact {

@@ -19,8 +19,27 @@
   max-width: 60ch;
 }
 
+.contact__links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .contact__btn {
   font-size: var(--size-sm);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border: 2px solid var(--clr-indigo);
+  color: var(--clr-indigo);
+}
+
+.btn--secondary:hover {
+  background-color: var(--clr-indigo);
+  color: var(--clr-light);
 }
 
 /* xs */

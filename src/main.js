@@ -13,7 +13,11 @@ import '../styles/utils.css';
 import mobileNav from './utils/mobile-nav';
 import darkMode from './utils/dark-mode';
 import lazyLoading from './utils/lazy-loading';
+import performance from './utils/performance';
+import analytics from './utils/analytics';
 
 mobileNav();
 darkMode();
 lazyLoading();
+performance();
+analytics();
